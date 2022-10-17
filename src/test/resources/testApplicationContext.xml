@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    
+    <bean id="productDao" class="com.sblinn.flooringmastery.dao.ProductDaoFileImpl">
+        <constructor-arg ref="testProductsFile"/>
+    </bean>
+    
+    <bean id="testProductsFile" class="java.lang.String">
+        <constructor-arg value="../FlooringMastery/TestDirectory/testProducts.txt"/>
+    </bean>
+    
+    <bean id="taxInfoDao" class="com.sblinn.flooringmastery.dao.TaxInfoDaoFileImpl">
+        <constructor-arg ref="testTaxesFile"/>
+    </bean>
+    
+    <bean id="testTaxesFile" class="java.lang.String">
+        <constructor-arg value="../FlooringMastery/TestDirectory/testTaxes.txt"/>
+    </bean>
+    
+    
+    <bean id="orderDao" class="com.sblinn.flooringmastery.dao.OrderDaoFileImpl">
+        <constructor-arg ref="testOrdersDir"/>
+    </bean>
+    
+    <bean id="testOrdersDir" class="java.lang.String">
+        <constructor-arg value="../FlooringMastery/TestDirectory/testOrdersDir"/>
+    </bean>
+
+   
+    <bean id="orderDaoStub" class="com.sblinn.flooringmastery.service.OrderDaoStubImpl"/>
+
+    <bean id="productDaoStub" class="com.sblinn.flooringmastery.service.ProductDaoStubImpl"/>
+    
+    <bean id="taxInfoDaoStub" class="com.sblinn.flooringmastery.service.TaxInfoDaoStubImpl"/>
+    
+    <bean id="service" class="com.sblinn.flooringmastery.service.FlooringServiceImpl">
+        <constructor-arg ref="testOrdersDir"/>
+        <constructor-arg ref="orderDaoStub"/>
+        <constructor-arg ref="productDaoStub"/>
+        <constructor-arg ref="taxInfoDaoStub"/>
+    </bean>
+      
+          
+</beans>
